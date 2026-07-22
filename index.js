@@ -1,7 +1,6 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
-const https = require('https');
 
 // Path to onchainos CLI binary if local
 const ONCHAINOS_PATH = process.env.ONCHAINOS_PATH || "C:\\Users\\shuhaib s\\.local\\bin\\onchainos.exe";
@@ -43,18 +42,18 @@ const CHAIN_GAS_ESTIMATES_USD = {
   ethereum: 4.50
 };
 
-// Fast Whale Signals
+// Fast Whale Signals (No Emojis)
 function fetchWhaleSignals(chain = "ethereum") {
   const chainUpper = (chain || "ethereum").toUpperCase();
   return {
     hasWhaleActivity: true,
     whaleCount: "3",
     volumeUsd: "$14,600",
-    summary: `🐳 3 Smart Money Wallets ($14.6k) accumulating on ${chainUpper}`
+    summary: `3 SMART MONEY WALLETS ($14.6K) ACCUMULATING ON ${chainUpper}`
   };
 }
 
-// Fast Token Security & Rug Detector
+// Fast Token Security & Rug Detector (No Emojis)
 function scanTokenSecurity(tokenSymbol) {
   const sym = (tokenSymbol || "USDC").toUpperCase();
   
@@ -64,7 +63,7 @@ function scanTokenSecurity(tokenSymbol) {
       honeypotStatus: "PASS",
       mintRisk: "NONE",
       taxRate: "0%",
-      rugRiskLabel: "🛡️ Audited (0% Rug Risk)"
+      rugRiskLabel: "AUDITED (0% RUG RISK)"
     };
   }
   
@@ -73,7 +72,7 @@ function scanTokenSecurity(tokenSymbol) {
     honeypotStatus: "PASS",
     mintRisk: "LOW",
     taxRate: "0%",
-    rugRiskLabel: "🛡️ Standard Token Scan Passed"
+    rugRiskLabel: "STANDARD SCAN PASSED"
   };
 }
 
@@ -144,28 +143,28 @@ function fetchDeFiYields(token = "USDC", targetChains = ["ethereum", "arbitrum",
   return allProducts;
 }
 
-// Assign Risk Tier & Security Rating
+// Assign Risk Tier & Security Rating (No Emojis)
 function classifyRisk(platformName, chain) {
   const name = (platformName || "").toLowerCase();
   
   if (name.includes('aave') || name.includes('compound') || name.includes('spark') || name.includes('lido')) {
     return {
       tier: "Tier 1",
-      label: "🛡️ Bluechip (0% IL)",
+      label: "BLUECHIP (0% IL)",
       securityScore: "9.8/10",
       ilRisk: "None"
     };
   } else if (name.includes('fluid') || name.includes('syrup') || name.includes('yearn') || name.includes('morpho') || name.includes('marinade') || name.includes('jito')) {
     return {
       tier: "Tier 2",
-      label: "⚡ Vault (Low IL)",
+      label: "VAULT (LOW IL)",
       securityScore: "8.7/10",
       ilRisk: "Low"
     };
   } else {
     return {
       tier: "Tier 3",
-      label: "🚀 High Yield DEX",
+      label: "HIGH YIELD DEX",
       securityScore: "7.4/10",
       ilRisk: "Moderate"
     };
@@ -215,31 +214,31 @@ function calculateNetReturns(products, amountCapitalUsd, tokenSymbol = "USDC") {
       ilRisk: riskInfo.ilRisk,
       rugRiskLabel: secInfo.rugRiskLabel,
       whaleSignalSummary: whaleSignal.summary,
-      trend: "→ Stable",
+      trend: "STABLE",
       sparkline: sparkline
     };
   });
 }
 
-// Generate Real-Time Gas Advisor Message
+// Generate Real-Time Gas Advisor Message (No Emojis)
 function generateGasAdvice(amountCapitalUsd) {
   const capital = parseFloat(amountCapitalUsd) || 1000;
   
   if (capital < 500) {
     return {
-      status: "⚡ High Gas Friction Warning for Ethereum L1",
+      status: "HIGH GAS FRICTION WARNING FOR ETHEREUM L1",
       advice: "For capital under $500, mainnet Ethereum gas ($4.50/tx) consumes over 90% of your first-year yield. Base L2 ($0.15 gas) or gas-free X Layer is strongly recommended to maximize net APY.",
       gasBreakdown: CHAIN_GAS_ESTIMATES_USD
     };
   } else if (capital < 2000) {
     return {
-      status: "💡 Moderate Gas Savings Opportunity",
+      status: "MODERATE GAS SAVINGS OPPORTUNITY",
       advice: "For capital between $500-$2,000, L2s (Base/Arbitrum) provide a ~0.4% higher net APY advantage over Ethereum L1 due to transaction cost efficiency.",
       gasBreakdown: CHAIN_GAS_ESTIMATES_USD
     };
   } else {
     return {
-      status: "🟢 Low Gas Sensitivity (Mainnet Friendly)",
+      status: "LOW GAS SENSITIVITY (MAINNET FRIENDLY)",
       advice: "For capital above $2,000, transaction gas friction is negligible (< 0.25% of annual return). Deep-liquidity Ethereum L1 protocols (Aave, Fluid, Compound) are fully viable alongside L2s.",
       gasBreakdown: CHAIN_GAS_ESTIMATES_USD
     };
@@ -315,24 +314,3 @@ module.exports = {
   fetchWhaleSignals,
   scanTokenSecurity
 };
-
-// CLI entry point
-if (require.main === module) {
-  const args = process.argv.slice(2);
-  let token = "USDC";
-  let amount = "1000";
-  
-  for (let i = 0; i < args.length; i++) {
-    if (args[i] === '--token' && args[i + 1]) token = args[i + 1];
-    if (args[i] === '--amount' && args[i + 1]) amount = args[i + 1];
-  }
-  
-  generateYieldReport(token, amount)
-    .then(result => {
-      console.log(JSON.stringify(result, null, 2));
-    })
-    .catch(err => {
-      console.error("Execution failed:", err.message);
-      process.exit(1);
-    });
-}
