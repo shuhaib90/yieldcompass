@@ -485,26 +485,36 @@
 
     function renderData(data) {
       if (data.gas_advice) {
-        document.getElementById('gasAdviceTitle').innerText = data.gas_advice.status.toUpperCase();
-        document.getElementById('gasAdviceBody').innerText = data.gas_advice.advice;
+        const titleEl = document.getElementById('gasAdviceTitle');
+        const bodyEl = document.getElementById('gasAdviceBody');
+        if (titleEl) titleEl.innerText = data.gas_advice.status.toUpperCase();
+        if (bodyEl) bodyEl.innerText = data.gas_advice.advice;
       }
 
-      document.getElementById('strategySummaryText').innerText = data.strategy_summary;
+      const summaryEl = document.getElementById('strategySummaryText');
+      if (summaryEl) summaryEl.innerText = data.strategy_summary;
 
       renderChart(data.top_opportunities);
       renderTable();
 
-      const top = data.top_opportunities[0] || {};
+      const top = (data.top_opportunities && data.top_opportunities[0]) || {};
       if (top.investmentId) {
-        document.getElementById('cliSearchCmd').innerText = `onchainos defi search --token ${selectedToken} --chain ${top.chain || 'base'}`;
-        document.getElementById('cliChartCmd').innerText = `onchainos defi rate-chart --investment-id ${top.investmentId} --time-range WEEK`;
-        document.getElementById('cliPrepareCmd').innerText = `onchainos defi prepare --investment-id ${top.investmentId}`;
-        document.getElementById('cliDepositCmd').innerText = `onchainos defi deposit --investment-id ${top.investmentId} --amount ${data.capital_usd}`;
+        const searchEl = document.getElementById('cliSearchCmd');
+        const chartEl = document.getElementById('cliChartCmd');
+        const prepEl = document.getElementById('cliPrepareCmd');
+        const depEl = document.getElementById('cliDepositCmd');
+
+        if (searchEl) searchEl.innerText = `onchainos defi search --token ${selectedToken} --chain ${top.chain || 'base'}`;
+        if (chartEl) chartEl.innerText = `onchainos defi rate-chart --investment-id ${top.investmentId} --time-range WEEK`;
+        if (prepEl) prepEl.innerText = `onchainos defi prepare --investment-id ${top.investmentId}`;
+        if (depEl) depEl.innerText = `onchainos defi deposit --investment-id ${top.investmentId} --amount ${data.capital_usd}`;
       }
     }
 
     function renderChart(opportunities) {
-      const ctx = document.getElementById('apyTrendChart').getContext('2d');
+      const canvasEl = document.getElementById('apyTrendChart');
+      if (!canvasEl || typeof Chart === 'undefined') return;
+      const ctx = canvasEl.getContext('2d');
       if (chartInstance) chartInstance.destroy();
 
       const labels = ['D-6', 'D-5', 'D-4', 'D-3', 'D-2', 'D-1', 'TODAY'];
