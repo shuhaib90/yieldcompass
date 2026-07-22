@@ -137,9 +137,9 @@ Execute the full 6-step strategy command suite directly in your terminal:
 
 ```bash
 # Step 1: Export OKX Web3 API Credentials
-export OKX_API_KEY="881f7959-afa4-4d88-baf5-0506dc08ad2c"
-export OKX_SECRET_KEY="9542F9958CF4B79F34BDC47F186793E5"
-export OKX_PASSPHRASE="Shuhaib@6282"
+export OKX_API_KEY="your_okx_api_key_here"
+export OKX_SECRET_KEY="your_okx_secret_key_here"
+export OKX_PASSPHRASE="your_okx_passphrase_here"
 
 # Step 2: Call Agent #6809 via OKX A2A Protocol (1 USDT)
 npx okx-a2a task send --agent-id 6809 --message "token=USDC, amount=1000"
@@ -163,7 +163,7 @@ onchainos defi deposit --investment-id 28500 --amount 1000
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/shuhaib/yieldcompass.git
+   git clone https://github.com/shuhaib90/yieldcompass.git
    cd yieldcompass
    ```
 
