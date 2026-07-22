@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Landing Page Route
+app.get('/landing', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'landing.html'));
+});
+
 // ScoutGate Evidence Showcase Route
 app.get('/scoutgate', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'scoutgate.html'));
@@ -54,6 +59,7 @@ app.get('/api/security', (req, res) => {
 app.listen(PORT, () => {
   console.log(`\n==================================================`);
   console.log(`🌾 YieldCompass Web Dashboard: http://localhost:${PORT}`);
+  console.log(`🚀 Landing Showcase Page: http://localhost:${PORT}/landing`);
   console.log(`🛡️  ScoutGate Evidence Site: http://localhost:${PORT}/scoutgate`);
   console.log(`==================================================\n`);
 });

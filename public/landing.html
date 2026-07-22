@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YieldCompass — The Future of Gas-Optimized DeFi Yields</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Three.js for 3D Background Canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Chart.js for Hero & Feature Trend Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="mono-theme">
+
+  <!-- 3D Interactive WebGL Background Canvas -->
+  <canvas id="webgl-bg"></canvas>
+
+  <!-- Minimalist B&W Header -->
+  <header class="mono-header">
+    <div class="mono-container header-flex">
+      <div class="brand">
+        <a href="/" class="brand-logo">
+          <img src="logo.png" alt="YieldCompass Logo" class="brand-logo-img">
+          YIELDCOMPASS
+        </a>
+        <span class="version-tag">v3.4 / LANDING</span>
+      </div>
+
+      <nav class="mono-nav-pills">
+        <a href="#hero" class="pill-item active">HOME</a>
+        <a href="#features" class="pill-item">FEATURES</a>
+        <a href="#analytics" class="pill-item">ANALYTICS</a>
+        <a href="#security" class="pill-item">SECURITY</a>
+        <a href="#cli" class="pill-item">CLI GUIDE</a>
+      </nav>
+
+      <div class="header-status">
+        <a href="/" class="wallet-btn-mono">LAUNCH TERMINAL ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mono-container rel-z">
+
+    <!-- Landing Hero Section -->
+    <section class="landing-hero" id="hero">
+      
+      <!-- Floating Chain Badges -->
+      <div class="floating-badge badge-top-left">
+        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/base.svg" alt="Base">
+        BASE L2
+      </div>
+      <div class="floating-badge badge-top-right">
+        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/sol.svg" alt="Solana">
+        SOLANA
+      </div>
+      <div class="floating-badge badge-mid-left">
+        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/okb.svg" alt="X Layer">
+        X LAYER
+      </div>
+      <div class="floating-badge badge-mid-right">
+        <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg" alt="Ethereum">
+        ETHEREUM
+      </div>
+
+      <div class="hero-center-content">
+        <div class="hero-mono-badge">[ OKX.AI ASP #6809 ON X LAYER MAINNET ]</div>
+        <h1 class="hero-main-title">STEP INTO THE FUTURE OF<br>GAS-OPTIMIZED DEFI YIELDS</h1>
+        <p class="hero-main-sub">
+          AI-driven multi-chain yield aggregator, smart money whale radar, token security auditor, and gas friction advisor for Web3 investors.
+        </p>
+        <div class="hero-cta-group">
+          <a href="/" class="btn-primary-mono">GET STARTED ↗</a>
+          <a href="/scoutgate" class="btn-secondary-mono">EVIDENCE NAVIGATOR ↗</a>
+        </div>
+      </div>
+
+      <!-- 3 Hero Showcase Cards Matching Reference Layout -->
+      <div class="hero-cards-trio">
+        
+        <!-- Card 1: Markets List -->
+        <div class="showcase-card">
+          <div class="card-head">
+            <span class="card-tag">MARKETS</span>
+            <span class="card-link">SEE ALL</span>
+          </div>
+          <div class="market-row">
+            <div class="market-info">
+              <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/usdc.svg" alt="USDC">
+              <div>
+                <strong>USDC</strong>
+                <span>Compound V3</span>
+              </div>
+            </div>
+            <div class="market-val">
+              <strong>5.59%</strong>
+              <span class="val-sub">$9.1M TVL</span>
+            </div>
+          </div>
+          <div class="market-row">
+            <div class="market-info">
+              <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg" alt="ETH">
+              <div>
+                <strong>ETH</strong>
+                <span>Aave V3</span>
+              </div>
+            </div>
+            <div class="market-val">
+              <strong>4.12%</strong>
+              <span class="val-sub">$115M TVL</span>
+            </div>
+          </div>
+          <div class="market-row">
+            <div class="market-info">
+              <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/sol.svg" alt="SOL">
+              <div>
+                <strong>SOL</strong>
+                <span>Jupiter</span>
+              </div>
+            </div>
+            <div class="market-val">
+              <strong>7.85%</strong>
+              <span class="val-sub">$142M TVL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Main Balance & Chart -->
+        <div class="showcase-card center-card">
+          <div class="card-head">
+            <span class="card-tag">TOTAL DEFI PORTFOLIO</span>
+            <span class="card-code">NET APY: +5.58%</span>
+          </div>
+          <div class="balance-disp">
+            <span class="curr">$</span>
+            <strong class="amt">15,475.00</strong>
+            <span class="unit">USD</span>
+          </div>
+          <div class="mini-chart-box">
+            <canvas id="heroBalanceChart"></canvas>
+          </div>
+          <div class="balance-foot">
+            <span>NET RETURN (+30D)</span>
+            <strong class="green-text">+$432.49 (+12.4%)</strong>
+          </div>
+        </div>
+
+        <!-- Card 3: Gas Friction Swap Advisor -->
+        <div class="showcase-card">
+          <div class="card-head">
+            <span class="card-tag">GAS FRICTION ADVISOR</span>
+            <span class="card-code">NET APY RANK</span>
+          </div>
+          <div class="gas-compare-box">
+            <div class="gas-chain-row">
+              <div class="chain-label">
+                <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/okb.svg" alt="X Layer">
+                X LAYER
+              </div>
+              <span class="gas-fee">$0.00 GAS</span>
+            </div>
+            <div class="gas-chain-row">
+              <div class="chain-label">
+                <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/base.svg" alt="Base">
+                BASE L2
+              </div>
+              <span class="gas-fee">$0.15 GAS</span>
+            </div>
+            <div class="gas-chain-row">
+              <div class="chain-label">
+                <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg" alt="ETH">
+                ETHEREUM
+              </div>
+              <span class="gas-fee-high">$4.50 GAS</span>
+            </div>
+          </div>
+          <a href="/" class="btn-card-action">EXECUTE DEPOSIT ↗</a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Partner & Ecosystem Logo Bar -->
+    <section class="partner-bar-mono">
+      <p class="partner-title">POWERING HIGH-PRECISION DEFI YIELDS ACROSS LEADING PROTOCOLS</p>
+      <div class="partner-logos">
+        <div class="partner-item">
+          <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/base.svg" alt="Base">
+          BASE
+        </div>
+        <div class="partner-item">
+          <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg" alt="Ethereum">
+          ETHEREUM
+        </div>
+        <div class="partner-item">
+          <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/sol.svg" alt="Solana">
+          SOLANA
+        </div>
+        <div class="partner-item">
+          <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/arb.svg" alt="Arbitrum">
+          ARBITRUM
+        </div>
+        <div class="partner-item">
+          <img src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/okb.svg" alt="OKX">
+          OKX X LAYER
+        </div>
+      </div>
+    </section>
+
+    <!-- Powerful Features Section Matching Reference Grid -->
+    <section class="features-section" id="features">
+      
+      <div class="section-header-center">
+        <h2>POWERFUL FEATURES FOR SMARTER CRYPTO YIELDS</h2>
+        <p>Deterministic gas friction modeling, smart money whale tracking, and automated contract security audits.</p>
+      </div>
+
+      <!-- Feature 1: Large Wide Hero Card -->
+      <div class="wide-feature-card">
+        <div class="feature-text">
+          <h3>Tools For Better Cryptocurrency Yields</h3>
+          <p>Smart platform designed to compute exact gas overhead relative to capital size, preventing yield loss on high L1 gas fees.</p>
+          <a href="/" class="btn-primary-mono">GET STARTED ↗</a>
+        </div>
+        <div class="feature-chart-box">
+          <canvas id="featureYieldChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Feature Grid: 2 Side-by-Side Cards -->
+      <div class="features-trio-grid">
+        
+        <!-- Left Feature Card: Whale Radar -->
+        <div class="mono-card feature-sub-card">
+          <div class="card-title-bar">
+            <h2>SMART MONEY WHALE RADAR</h2>
+            <span class="card-code">ONCHAINOS SIGNAL</span>
+          </div>
+          <p class="feature-desc">Scans on-chain accumulation inflows from top smart money wallets across DeFi pools.</p>
+          <div class="whale-signal-list">
+            <div class="signal-item">
+              <span class="mono-tag">🐳 WHALE ACCUMULATION</span>
+              <strong>3 Smart Money Wallets ($14.6k) in Compound V3</strong>
+            </div>
+            <div class="signal-item">
+              <span class="mono-tag">⚡ SWAP INFLOW</span>
+              <strong>$451M TVL Deep Liquidity Pool on Jupiter</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Feature Card: Token Security Audit -->
+        <div class="mono-card feature-sub-card">
+          <div class="card-title-bar">
+            <h2>TOKEN SECURITY & RUG AUDIT</h2>
+            <span class="card-code">ONCHAINOS SECURITY</span>
+          </div>
+          <p class="feature-desc">Automated contract verification for honeypots, mint authority risks, and tax rates.</p>
+          <div class="audit-nodes">
+            <div class="node-box">
+              <span class="node-tag">[ HONEYPOT TEST ]</span>
+              <strong class="node-pass">PASSED (0% Tax)</strong>
+            </div>
+            <div class="node-box">
+              <span class="node-tag">[ MINT AUTHORITY ]</span>
+              <strong class="node-pass">NONE (Immutable)</strong>
+            </div>
+            <div class="node-box">
+              <span class="node-tag">[ OVERALL RATING ]</span>
+              <strong class="node-score">9.8 / 10 BLUECHIP</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mono-footer">
+    <div class="mono-container footer-flex">
+      <div>
+        <strong>YIELDCOMPASS TERMINAL</strong> — OKX.AI ASP #6809
+      </div>
+      <div class="footer-links">
+        <a href="/">TERMINAL</a>
+        <a href="/scoutgate">EVIDENCE SITE</a>
+        <a href="#features">FEATURES</a>
+        <a href="https://github.com/shuhaib90/yieldcompass">GITHUB</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts for 3D Background & Charts -->
+  <script>
+    // 3D Background with Three.js
+    function init3DBackground() {
+      const canvas = document.getElementById('webgl-bg');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      const geometry = new THREE.IcosahedronGeometry(12, 2);
+      const material = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.12
+      });
+      const sphere = new THREE.Mesh(geometry, material);
+      scene.add(sphere);
+
+      const particlesGeo = new THREE.BufferGeometry();
+      const count = 300;
+      const positions = new Float32Array(count * 3);
+
+      for (let i = 0; i < count * 3; i++) {
+        positions[i] = (Math.random() - 0.5) * 40;
+      }
+      particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const particleMat = new THREE.PointsMaterial({
+        size: 0.08,
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.25
+      });
+      const particleSystem = new THREE.Points(particlesGeo, particleMat);
+      scene.add(particleSystem);
+
+      camera.position.z = 18;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        sphere.rotation.x += 0.001;
+        sphere.rotation.y += 0.0015;
+        particleSystem.rotation.y -= 0.0005;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    init3DBackground();
+
+    // Render Hero Balance Curve
+    const ctx1 = document.getElementById('heroBalanceChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        datasets: [{
+          label: 'Portfolio Yield ($)',
+          data: [12100, 12800, 13400, 14100, 14800, 15100, 15475],
+          borderColor: '#FFFFFF',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: '#FFFFFF',
+          tension: 0.35,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { display: false },
+          y: { display: false }
+        }
+      }
+    });
+
+    // Render Feature Curve
+    const ctx2 = document.getElementById('featureYieldChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7'],
+        datasets: [{
+          label: 'Net APY (%)',
+          data: [4.2, 4.8, 5.1, 4.9, 5.4, 5.3, 5.59],
+          borderColor: '#FFFFFF',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointBackgroundColor: '#FFFFFF',
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { color: '#222222' }, ticks: { color: '#888888', font: { family: 'JetBrains Mono' } } },
+          y: { grid: { color: '#222222' }, ticks: { color: '#888888', font: { family: 'JetBrains Mono' } } }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
