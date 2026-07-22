@@ -1,0 +1,14 @@
+{
+  "name": "yieldcompass",
+  "version": "1.0.0",
+  "description": "OKX.AI ASP - DeFi Yield Finder & Gas-Optimized Strategy Advisor",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}
