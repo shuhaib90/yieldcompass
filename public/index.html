@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YieldCompass — 3D Web3 Wallet & Full CLI Execution Guide</title>
+  <title>YieldCompass Terminal — 3D Web3 Yield Strategy Engine</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,11 +29,12 @@
           <img src="logo.png" alt="YieldCompass Logo" class="brand-logo-img">
           YIELDCOMPASS
         </a>
-        <span class="version-tag">v3.3 / CUSTOM LOGO</span>
+        <span class="version-tag">v3.5 / TERMINAL</span>
       </div>
 
       <nav class="mono-nav">
-        <a href="#terminal" class="active">TERMINAL</a>
+        <a href="/">HOME</a>
+        <a href="/terminal" class="active">TERMINAL</a>
         <a href="#analytics">ANALYTICS</a>
         <a href="#matrix">YIELD MATRIX</a>
         <a href="#cli">CLI GUIDE</a>
@@ -274,7 +275,8 @@
         <strong>YIELDCOMPASS TERMINAL</strong> — OKX.AI ASP #6809
       </div>
       <div class="footer-links">
-        <a href="#terminal">TERMINAL</a>
+        <a href="/">HOME</a>
+        <a href="/terminal">TERMINAL</a>
         <a href="#matrix">MATRIX</a>
         <a href="#cli">CLI GUIDE</a>
         <a href="/scoutgate">EVIDENCE SITE</a>
@@ -296,6 +298,8 @@
     // Initialize 3D Wireframe Canvas with Three.js
     function init3DBackground() {
       const canvas = document.getElementById('webgl-bg');
+      if (!canvas || typeof THREE === 'undefined') return;
+
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
@@ -377,15 +381,17 @@
         signer = provider.getSigner();
 
         const shortAddr = userAccount.slice(0, 6) + '...' + userAccount.slice(-4);
-        walletBtnText.innerText = shortAddr.toUpperCase();
-        walletStatusBadge.innerText = `[ WALLET: ${shortAddr.toUpperCase()} ]`;
-        walletStatusBadge.className = 'mono-tag wallet-connected';
+        if (walletBtnText) walletBtnText.innerText = shortAddr.toUpperCase();
+        if (walletStatusBadge) {
+          walletStatusBadge.innerText = `[ WALLET: ${shortAddr.toUpperCase()} ]`;
+          walletStatusBadge.className = 'mono-tag wallet-connected';
+        }
       } catch (err) {
         console.error("Wallet connection failed:", err);
       }
     }
 
-    btnConnectWallet.addEventListener('click', connectWeb3Wallet);
+    if (btnConnectWallet) btnConnectWallet.addEventListener('click', connectWeb3Wallet);
 
     async function executeDirectDeposit(protocolName, chain, investmentId) {
       if (!userAccount) {
@@ -393,7 +399,8 @@
         if (!userAccount) return;
       }
 
-      const capital = document.getElementById('capitalInput').value || '1000';
+      const capitalInputEl = document.getElementById('capitalInput');
+      const capital = (capitalInputEl && capitalInputEl.value) || '1000';
       
       const confirmAction = confirm(`Confirm Web3 Deposit Execution:\n\nProtocol: ${protocolName}\nChain: ${chain.toUpperCase()}\nAmount: $${capital} ${selectedToken}\n\nProceed to sign transaction in your wallet?`);
       
@@ -453,18 +460,20 @@
       });
     });
 
-    capitalInput.addEventListener('input', (e) => capitalSlider.value = e.target.value);
-    capitalSlider.addEventListener('input', (e) => capitalInput.value = e.target.value);
+    if (capitalInput && capitalSlider) {
+      capitalInput.addEventListener('input', (e) => capitalSlider.value = e.target.value);
+      capitalSlider.addEventListener('input', (e) => capitalInput.value = e.target.value);
+      capitalInput.addEventListener('change', () => fetchStrategy());
+      capitalSlider.addEventListener('change', () => fetchStrategy());
+    }
 
-    capitalInput.addEventListener('change', () => fetchStrategy());
-    capitalSlider.addEventListener('change', () => fetchStrategy());
-    btnAnalyze.addEventListener('click', () => fetchStrategy());
+    if (btnAnalyze) btnAnalyze.addEventListener('click', () => fetchStrategy());
 
     async function fetchStrategy() {
-      const amount = capitalInput.value || '1000';
-      btnText.innerText = 'PROCESSING...';
-      spinner.style.display = 'inline-block';
-      btnAnalyze.disabled = true;
+      const amount = (capitalInput && capitalInput.value) || '1000';
+      if (btnText) btnText.innerText = 'PROCESSING...';
+      if (spinner) spinner.style.display = 'inline-block';
+      if (btnAnalyze) btnAnalyze.disabled = true;
 
       try {
         const res = await fetch(`/api/recommend?token=${selectedToken}&amount=${amount}`);
@@ -477,9 +486,9 @@
       } catch (err) {
         console.error('Fetch error:', err);
       } finally {
-        btnText.innerText = 'RUN STRATEGY ENGINE';
-        spinner.style.display = 'none';
-        btnAnalyze.disabled = false;
+        if (btnText) btnText.innerText = 'RUN STRATEGY ENGINE';
+        if (spinner) spinner.style.display = 'none';
+        if (btnAnalyze) btnAnalyze.disabled = false;
       }
     }
 
@@ -563,6 +572,8 @@
 
     function renderTable() {
       const tbody = document.getElementById('opportunitiesTbody');
+      if (!tbody) return;
+
       const filtered = rawOpportunities.filter(item => {
         if (selectedTier === 'all') return true;
         return (item.riskTier || item.risk_tier) === selectedTier;

@@ -6,17 +6,33 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
-// Landing Page Route
+// Default Home Route -> Landing Page (landing.html)
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'landing.html'));
+});
+
+// Landing Page Alias Route
 app.get('/landing', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'landing.html'));
+});
+
+// Terminal UI Route -> (index.html)
+app.get('/terminal', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/app', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // ScoutGate Evidence Showcase Route
 app.get('/scoutgate', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'scoutgate.html'));
 });
+
+// Serve Static Assets (css, images, js)
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Endpoint 1: Primary Yield & Gas Recommendation Strategy
 app.get('/api/recommend', async (req, res) => {
@@ -58,8 +74,8 @@ app.get('/api/security', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`\n==================================================`);
-  console.log(`🌾 YieldCompass Web Dashboard: http://localhost:${PORT}`);
-  console.log(`🚀 Landing Showcase Page: http://localhost:${PORT}/landing`);
+  console.log(`🌾 Landing Showcase Home: http://localhost:${PORT}/`);
+  console.log(`🔲 Web3 Yield Terminal: http://localhost:${PORT}/terminal`);
   console.log(`🛡️  ScoutGate Evidence Site: http://localhost:${PORT}/scoutgate`);
   console.log(`==================================================\n`);
 });

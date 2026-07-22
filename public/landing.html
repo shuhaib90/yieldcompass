@@ -27,19 +27,20 @@
           <img src="logo.png" alt="YieldCompass Logo" class="brand-logo-img">
           YIELDCOMPASS
         </a>
-        <span class="version-tag">v3.4 / LANDING</span>
+        <span class="version-tag">v3.5 / HOME</span>
       </div>
 
       <nav class="mono-nav-pills">
-        <a href="#hero" class="pill-item active">HOME</a>
+        <a href="/" class="pill-item active">HOME</a>
+        <a href="/terminal" class="pill-item">TERMINAL</a>
         <a href="#features" class="pill-item">FEATURES</a>
         <a href="#analytics" class="pill-item">ANALYTICS</a>
         <a href="#security" class="pill-item">SECURITY</a>
-        <a href="#cli" class="pill-item">CLI GUIDE</a>
+        <a href="/scoutgate" class="pill-item">EVIDENCE SITE ↗</a>
       </nav>
 
       <div class="header-status">
-        <a href="/" class="wallet-btn-mono">LAUNCH TERMINAL ↗</a>
+        <a href="/terminal" class="wallet-btn-mono">LAUNCH TERMINAL ↗</a>
       </div>
     </div>
   </header>
@@ -74,7 +75,7 @@
           AI-driven multi-chain yield aggregator, smart money whale radar, token security auditor, and gas friction advisor for Web3 investors.
         </p>
         <div class="hero-cta-group">
-          <a href="/" class="btn-primary-mono">GET STARTED ↗</a>
+          <a href="/terminal" class="btn-primary-mono">LAUNCH TERMINAL ↗</a>
           <a href="/scoutgate" class="btn-secondary-mono">EVIDENCE NAVIGATOR ↗</a>
         </div>
       </div>
@@ -86,7 +87,7 @@
         <div class="showcase-card">
           <div class="card-head">
             <span class="card-tag">MARKETS</span>
-            <span class="card-link">SEE ALL</span>
+            <a href="/terminal" class="card-link">SEE ALL ↗</a>
           </div>
           <div class="market-row">
             <div class="market-info">
@@ -178,7 +179,7 @@
               <span class="gas-fee-high">$4.50 GAS</span>
             </div>
           </div>
-          <a href="/" class="btn-card-action">EXECUTE DEPOSIT ↗</a>
+          <a href="/terminal" class="btn-card-action">EXECUTE DEPOSIT ↗</a>
         </div>
 
       </div>
@@ -225,7 +226,7 @@
         <div class="feature-text">
           <h3>Tools For Better Cryptocurrency Yields</h3>
           <p>Smart platform designed to compute exact gas overhead relative to capital size, preventing yield loss on high L1 gas fees.</p>
-          <a href="/" class="btn-primary-mono">GET STARTED ↗</a>
+          <a href="/terminal" class="btn-primary-mono">LAUNCH TERMINAL ↗</a>
         </div>
         <div class="feature-chart-box">
           <canvas id="featureYieldChart"></canvas>
@@ -290,7 +291,8 @@
         <strong>YIELDCOMPASS TERMINAL</strong> — OKX.AI ASP #6809
       </div>
       <div class="footer-links">
-        <a href="/">TERMINAL</a>
+        <a href="/">HOME</a>
+        <a href="/terminal">TERMINAL</a>
         <a href="/scoutgate">EVIDENCE SITE</a>
         <a href="#features">FEATURES</a>
         <a href="https://github.com/shuhaib90/yieldcompass">GITHUB</a>
@@ -303,6 +305,8 @@
     // 3D Background with Three.js
     function init3DBackground() {
       const canvas = document.getElementById('webgl-bg');
+      if (!canvas || typeof THREE === 'undefined') return;
+
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });

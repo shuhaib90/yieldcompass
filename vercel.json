@@ -1,7 +1,10 @@
 {
   "version": 2,
   "rewrites": [
+    { "source": "/", "destination": "/landing.html" },
     { "source": "/landing", "destination": "/landing.html" },
+    { "source": "/terminal", "destination": "/index.html" },
+    { "source": "/app", "destination": "/index.html" },
     { "source": "/scoutgate", "destination": "/scoutgate.html" },
     { "source": "/api/(.*)", "destination": "/server.js" }
   ]
